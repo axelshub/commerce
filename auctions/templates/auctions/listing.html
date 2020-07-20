@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h4>Listing {{ listing.id }}</h4>
+
+<ul>
+    <li>Title: {{ listing.title }}</li>
+    <li>Listed by: {{ listing.listed_by }}</li>
+    <li>Description: {{ listing.description }}</li>
+    <li>Current bid: {{ listing.starting_bid }}</li>
+</ul>
+
+<img src="{{ listing.image.url }}" alt="image" width="300" >
+
+<form action="{% url 'create' %}" method="POST" id="bid_form"> 
+    {% csrf_token %}
+    {{ bid_form }}
+    <input type="submit" value="Make Bid"> 
+    <input type="hidden" value="{{ listing }}" id="listing">
+
+</form>
+
+{% endblock %}
